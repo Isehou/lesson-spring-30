@@ -1,5 +1,7 @@
 package org.example.lessonspring30.service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.lessonspring30.model.Movie;
 import org.example.lessonspring30.repository.MovieRepository;
 import org.springframework.stereotype.Service;
@@ -8,12 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class MovieService {
     private final MovieRepository moviesrepository;
-
-    public MovieService(MovieRepository moviesrepository) {
-        this.moviesrepository = moviesrepository;
-    }
 
     public Movie addMovie(Movie movie) {
         validate(movie);

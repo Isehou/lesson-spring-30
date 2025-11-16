@@ -1,7 +1,10 @@
 package org.example.lessonspring30.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.lessonspring30.model.Movie;
 import org.example.lessonspring30.service.MovieService;
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -9,14 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/movies")
+@RequiredArgsConstructor
 public class MovieController {
     private final MovieService service;
-
-    public MovieController(MovieService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public Movie create(@RequestBody Movie movie) {
@@ -48,13 +49,16 @@ public class MovieController {
 
     @GetMapping("/search")
     public List<Movie> searchByTitle(@RequestParam String title) {
+        log.info("Файл найден");
         return service.getAllMovies().stream()
                 .filter(f -> f.getTitle().toLowerCase().contains(title.toLowerCase()))
                 .toList();
     }
 
+
     @GetMapping("/filter")
     public List<Movie> filterMovies(@RequestParam String genre) {
+        log.info("Список фильмов по фильтру готов");
         return service.getAllMovies().stream()
                 .filter(f -> f.getGenre().toLowerCase().contains(genre))
                 .toList();

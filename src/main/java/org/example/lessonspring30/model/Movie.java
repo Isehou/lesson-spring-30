@@ -1,7 +1,10 @@
 package org.example.lessonspring30.model;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 public class Movie {
     private int id;
     private String title;
@@ -9,15 +12,6 @@ public class Movie {
     private int year;
     private double rating;
     private boolean deleted;
-
-    public Movie(int id, String title, String genre, int year, double rating, boolean deleted) {
-        this.id = id;
-        this.title = title;
-        this.genre = genre;
-        this.year = year;
-        this.rating = rating;
-        this.deleted = deleted;
-    }
 
     public int getId() {
         return id;
